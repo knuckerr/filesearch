@@ -60,23 +60,23 @@ SearchResult BFSearch(const char *start_path, const char *target_file) {
 
     if (dir != NULL) {
       while ((entry = readdir(dir)) != NULL) {
+        char *sub_path = (char *)malloc(PATH_MAX);
+        if (sub_path == NULL) {
+          fprintf(stderr, "Error: Memory allocation failed.\n");
+          exit(EXIT_FAILURE);
+        }
+        snprintf(sub_path, PATH_MAX, "%s/%s", current_path, entry->d_name);
         if (entry->d_type == DT_DIR) {
           if (strcmp(entry->d_name, ".") != 0 &&
               strcmp(entry->d_name, "..") != 0) {
-            char *sub_path = (char *)malloc(PATH_MAX);
-            if (sub_path == NULL) {
-              fprintf(stderr, "Error: Memory allocation failed.\n");
-              exit(EXIT_FAILURE);
-            }
-            snprintf(sub_path, PATH_MAX, "%s/%s", current_path, entry->d_name);
             enqueue(&queue, sub_path);
-            free(sub_path);
           }
         } else {
           if (kmpSearch(entry->d_name, target_file) > 0) {
-            addPathToResult(&result, current_path);
+            addPathToResult(&result, sub_path);
           }
         }
+        free(sub_path);
       }
 
       closedir(dir);

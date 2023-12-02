@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int main(int argc, char *argv[]) {
   if (argc != 3) {
@@ -11,10 +12,16 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
+  float startTime, endTime, timeElapsed;
+
   const char *start_path = argv[1];
   const char *target_file = argv[2];
 
+  startTime = (float)clock() / CLOCKS_PER_SEC;
+
   SearchResult result = BFSearch(start_path, target_file);
+
+  endTime = (float)clock() / CLOCKS_PER_SEC;
 
   if (result.num_paths > 0) {
     printf("Found %d file(s):\n", result.num_paths);
@@ -26,6 +33,9 @@ int main(int argc, char *argv[]) {
   } else {
     printf("File %s not found.\n", target_file);
   }
+  timeElapsed = endTime - startTime;
+
+  printf("Time Elapsed %f\n", timeElapsed);
 
   return 0;
 }
