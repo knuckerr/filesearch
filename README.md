@@ -2,13 +2,17 @@
 
 ## Overview
 
-This is a simple file search program implemented in C. The program uses the Breadth-First Search (BFS) algorithm to search for a specific file in a given directory and its subdirectories. The search results are organized using a custom data structure called `SearchResult`.
+This is a simple file search program implemented in C. The program uses various algorithms, including the Breadth-First Search (BFS) algorithm for directory traversal and the Knuth-Morris-Pratt (KMP) algorithm for pattern matching within files. The search results are organized using a custom data structure called `SearchResult`.
 
 ## Algorithms
 
 ### Breadth-First Search (BFS)
 
 The BFS algorithm is employed to traverse the directory structure in a breadth-first manner. It starts from the provided starting directory and explores all its immediate subdirectories before moving on to their subdirectories. This ensures that files at shallower levels are found before those at deeper levels.
+
+### Knuth-Morris-Pratt (KMP)
+
+The KMP algorithm is used for efficient pattern matching within files. It allows the program to search for a specific pattern (e.g., a target file name) in a file by avoiding unnecessary backtracking, resulting in faster and more efficient searches.
 
 ### Path Construction
 
@@ -48,7 +52,6 @@ typedef struct {
 To use the program, provide the starting path and target file as command-line arguments:
 
 ```bash
+make
 ./file_search /path/to/search example.txt
 ```
-
-The program will then perform a BFS search and display the paths of the found files.
