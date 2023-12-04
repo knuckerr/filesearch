@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void buildPrefixTable(char *pattern, int *lps, int m) {
+void buildPrefixTable(const char *pattern, int *lps, size_t m) {
   int j = 0;
 
   for (int i = 1; i < m; ++i) {
@@ -18,12 +18,12 @@ void buildPrefixTable(char *pattern, int *lps, int m) {
   }
 }
 
-int kmpSearch(char *text, char *pattern) {
+int kmpSearch(char *text, const char *pattern) {
   if (text == NULL || pattern == NULL) {
     return -1;
   }
-  int n = strlen(text);
-  int m = strlen(pattern);
+  size_t n = strlen(text);
+  size_t m = strlen(pattern);
 
   if (m == 0) {
     return -1;

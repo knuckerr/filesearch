@@ -55,7 +55,7 @@ SearchResult BFSearch(const char *start_path, const char *target_file) {
   enqueue(&queue, start_path);
 
   while (queue.front != NULL) {
-    const char *current_path = dequeue(&queue);
+    char *current_path = dequeue(&queue);
     dir = opendir(current_path);
 
     if (dir != NULL) {

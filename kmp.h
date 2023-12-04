@@ -2,8 +2,8 @@
 
 #define KMP_H
 
-void buildPrefixTable(char *pattern, int *lps, int m);
+void buildPrefixTable(const char *pattern, int *lps, int m);
 
-int kmpSearch(char *text, char *patern);
+int kmpSearch(char *text, const char *patern);
 
 #endif
