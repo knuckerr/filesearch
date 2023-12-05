@@ -72,7 +72,7 @@ SearchResult BFSearch(const char *start_path, const char *target_file) {
             enqueue(&queue, sub_path);
           }
         } else {
-          if (kmpSearch(entry->d_name, target_file) > 0) {
+          if (kmpSearch(entry->d_name, target_file) >= 0) {
             addPathToResult(&result, sub_path);
           }
         }

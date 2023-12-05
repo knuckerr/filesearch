@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS =  -D_DEFAULT_SOURCE \
+CFLAGS = -std=c2x -D_DEFAULT_SOURCE \
 -O2 -Wall -Wformat=2 -Wconversion -Wtrampolines -Wimplicit-fallthrough \
 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 \
 -D_GLIBCXX_ASSERTIONS \
